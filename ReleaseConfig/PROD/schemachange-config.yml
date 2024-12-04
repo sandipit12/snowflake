@@ -1,0 +1,69 @@
+ config-version: 1
+# The root folder for the database change scripts
+# root-folder: null
+
+# The modules folder for jinja macros and templates to be used across multiple scripts.
+ modules-folder: null
+
+# The name of the snowflake account (e.g. xy12345.east-us-2.azure)
+ snowflake-account: 'rsdwh.west-europe.azure'
+
+# The name of the snowflake user
+ snowflake-user: 'ETL_USER'
+
+# The snowflake private key path for the user
+ snowflake-private-key-path: {{env_var('PROD_Private_Key_Path')}}
+
+# The name of the default role to use. Can be overrideen in the change scripts.
+ snowflake-role: 'ETL_ROLE'
+
+# The name of the default warehouse to use. Can be overridden in the change scripts.
+ snowflake-warehouse: 'DATA_TEAM_WH'
+
+# The name of the default database environment to use. Can be overridden in the change scripts.
+ snowflake-database-env: null
+
+# Used to override the default name of the change history table (the default is METADATA.SCHEMACHANGE.CHANGE_HISTORY)
+ change-history-table: SCHEMA_CHANGE.CHANGE_HISTORY
+
+# Define values for the variables to replaced in change scripts
+ vars:
+  "datalake_env": "rs" # "rs" for prod datalake storage accounts ; 
+  "accountscore_datalake_env" : "rs" #"rs" for prod accountscore datalake storage accounts
+  "bureau_glass_datalake_env" : "rs" #"rs" for prod bureau_glass datalake storage accounts
+  "decision_engine_db" : "DECISION_ENGINE"
+  "decision_engine_preprocessor_db" : "DECISION_ENGINE_PREPROCESSOR"
+  "accountscore_db" : "ACCOUNTSCORE"
+  "quote_db" : "QUOTE"
+  "Venus_Live_db": "VENUS_LIVE"
+  "file_drop_db": "FILE_DROP"
+  "sandbox_db": "SANDBOX"
+  "admin_db": "ADMIN"
+  "collections_db": "COLLECTIONS"
+  "consumerauto_quote_db": "CONSUMERAUTO_QUOTE"
+  "consumerauto_vehicleservice_db": "CONSUMERAUTO_VEHICLESERVICE"
+  "dwh_legacy_db": "DWH_LEGACY"
+  "security_role": "PROD"
+  "Bureau_CallCredit_db": "BUREAU_CALLCREDIT"
+  "Bureau_Glass_db": "BUREAU_GLASS"
+  "consumerauto_vehicleregistration_db": "CONSUMERAUTO_VEHICLEREGISTRATION"
+  "consumerauto_contractacceptance_db": "CONSUMERAUTO_CONTRACTACCEPTANCE"
+  "consumerauto_compliancechecks_db": "CONSUMERAUTO_COMPLIANCECHECKS"
+  "consumerauto_invoice_db": "CONSUMERAUTO_INVOICE"
+  "Bureau_Equifax_db": "BUREAU_EQUIFAX"
+  "loancollections_db": "LOANCOLLECTIONS"
+  "pricing_db": "PRICING"
+
+# Create the change history schema and table, if they do not exist (the default is False)
+ create-change-history-table: true
+
+# Enable autocommit feature for DML commands (the default is False)
+ autocommit: false
+
+# Display verbose debugging details during execution (the default is False)
+ verbose: true
+
+# Run schemachange in dry run mode (the default is False)
+ dry-run: false    
+
+
