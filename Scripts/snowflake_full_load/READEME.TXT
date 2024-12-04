@@ -1,0 +1,21 @@
+The scripts;
+    1. Reads from source MSSQL databases and export the data to csv
+    2. Stores them locally before compressing them
+    3. Copies the result files to data lake using AzCopy commnad.
+    4. Loads the data from data lake to Snowflake using SnowSQL
+    5. Removes the local copy of the files
+
+How to deploy:
+1. AzCopy.exe is a standalone .exe file located in the ./utility folder. No installation required, but it needs SAS
+2. SnowSQL - need to be installed and configured. follow this link https://docs.snowflake.com/en/user-guide/snowsql-config.html
+After installing SnowSQL, Snowflake configuration and credentials canbe specified in the snowsql config file found in %USERPROFILE%/.snowsql/config
+Make sure you dont have an environment variable for $Snowflake_user that can overrwirte what is in the config!!
+
+3. The script is written in bash. The easiest method is to istall git which comes with git bash. https://git-scm.com/downloads
+4. Make sure you have bcp utility available on the pc you are running the script, if not download from https://go.microsoft.com/fwlink/?linkid=2142258
+5. Create .bashrc using this command copy > ~/.bashrc
+6. Add "C:\Program Files\Git\bin" to the environment PATH. Used for bash
+
+TODO:
+1. Move staging schema out of DWH, create seperate databases for each source (database or other sources). [done]
+2. user_create_table.sql contains grants and uses accountadmin. Run the script using the correct role, e.g. ETL_user, create one if does not exist.
